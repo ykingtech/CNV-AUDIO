@@ -5,65 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel | CNV AUDIO</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Rajdhani', sans-serif; background: #0a0a0a; color: white; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; background: #f3f4f6; color: #1f2937; }</style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="min-h-screen flex items-center justify-center p-6">
 
-    <div id="auth-container" class="w-full max-w-md bg-gray-900 p-8 rounded-xl border border-gray-800 shadow-2xl">
-        <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">Admin Login</h2>
-        <input type="email" id="email" placeholder="Admin Email" class="w-full mb-4 p-3 bg-gray-800 rounded border border-gray-700 text-white focus:outline-none focus:border-cyan-400">
-        <input type="password" id="password" placeholder="Password" class="w-full mb-6 p-3 bg-gray-800 rounded border border-gray-700 text-white focus:outline-none focus:border-cyan-400">
-        <button id="login-btn" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 rounded transition">Login Dashboard</button>
-    </div>
-
-    <div id="dashboard-container" class="w-full max-w-2xl bg-gray-900 p-8 rounded-xl border border-gray-800 shadow-2xl hidden">
-        <div class="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
-            <h2 class="text-3xl font-bold text-white">Add New Device</h2>
-            <button id="logout-btn" class="text-red-400 hover:text-red-300 text-sm">Logout</button>
+    <div class="w-full max-w-2xl bg-white p-8 rounded-xl shadow-xl border border-gray-200">
+        <div class="mb-8 border-b border-gray-200 pb-4">
+            <h2 class="text-3xl font-bold text-gray-900 font-['Rajdhani']">Upload New Device</h2>
+            <p class="text-gray-500 text-sm">Add items to the public catalog instantly.</p>
         </div>
 
-        <form id="product-form" class="space-y-4">
+        <form id="product-form" class="space-y-5">
             <div>
-                <label class="block text-gray-400 text-sm mb-1">Product Name</label>
-                <input type="text" id="p-name" required class="w-full p-3 bg-gray-800 rounded border border-gray-700 focus:border-cyan-400">
+                <label class="block text-gray-700 text-sm font-semibold mb-2">Product Name</label>
+                <input type="text" id="p-name" required class="w-full p-3 bg-gray-50 rounded border border-gray-300 focus:outline-none focus:border-blue-500 transition">
             </div>
             
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-gray-400 text-sm mb-1">Price (LKR)</label>
-                    <input type="text" id="p-price" required placeholder="e.g. Rs. 45,000" class="w-full p-3 bg-gray-800 rounded border border-gray-700 focus:border-cyan-400">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Price (LKR)</label>
+                    <input type="text" id="p-price" required placeholder="Rs. 45,000" class="w-full p-3 bg-gray-50 rounded border border-gray-300 focus:border-blue-500 transition">
                 </div>
                 <div>
-                    <label class="block text-gray-400 text-sm mb-1">Image URL</label>
-                    <input type="url" id="p-image" required placeholder="https://example.com/image.jpg" class="w-full p-3 bg-gray-800 rounded border border-gray-700 focus:border-cyan-400">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Upload Image</label>
+                    <input type="file" id="p-image-file" accept="image/*" required class="w-full p-2 bg-gray-50 rounded border border-gray-300 focus:border-blue-500 transition">
                 </div>
             </div>
 
             <div>
-                <label class="block text-gray-400 text-sm mb-1">Short Description</label>
-                <textarea id="p-desc" required rows="3" class="w-full p-3 bg-gray-800 rounded border border-gray-700 focus:border-cyan-400"></textarea>
+                <label class="block text-gray-700 text-sm font-semibold mb-2">Short Description</label>
+                <textarea id="p-desc" required rows="3" class="w-full p-3 bg-gray-50 rounded border border-gray-300 focus:border-blue-500 transition"></textarea>
             </div>
 
             <div>
-                <label class="block text-gray-400 text-sm mb-1">Specifications (Comma separated)</label>
-                <input type="text" id="p-specs" required placeholder="1200W, 4 Channel, Bluetooth 5.0" class="w-full p-3 bg-gray-800 rounded border border-gray-700 focus:border-cyan-400">
+                <label class="block text-gray-700 text-sm font-semibold mb-2">Specifications (Comma separated)</label>
+                <input type="text" id="p-specs" required placeholder="1200W, 4 Channel, Bluetooth 5.0" class="w-full p-3 bg-gray-50 rounded border border-gray-300 focus:border-blue-500 transition">
             </div>
 
-            <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded mt-4 transition">Upload to Store</button>
+            <div id="progress-container" class="hidden w-full bg-gray-200 rounded-full h-2.5">
+                <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg mt-4 transition shadow-md">Upload to Store</button>
         </form>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
-        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAx-Zv0iK_P25XK9rcly_t1fLJv_-xyY2I",
             authDomain: "cnv-audio.firebaseapp.com",
             projectId: "cnv-audio",
-            storageBucket: "cnv-audio.firebasestorage.app",
+            storageBucket: "cnv-audio.firebasestorage.app", // Make sure this matches your config
             messagingSenderId: "981917537038",
             appId: "1:981917537038:web:e79ffa1b5d2ed75af0fd5f",
             measurementId: "G-T3T30E7KJJ"
@@ -71,61 +68,60 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const auth = getAuth(app);
+        const storage = getStorage(app);
 
-        // UI Elements
-        const authContainer = document.getElementById('auth-container');
-        const dashboardContainer = document.getElementById('dashboard-container');
         const productForm = document.getElementById('product-form');
+        const progressBar = document.getElementById('progress-bar');
+        const progressContainer = document.getElementById('progress-container');
 
-        // Check Auth State
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                authContainer.classList.add('hidden');
-                dashboardContainer.classList.remove('hidden');
-            } else {
-                authContainer.classList.remove('hidden');
-                dashboardContainer.classList.add('hidden');
-            }
-        });
-
-        // Login Function
-        document.getElementById('login-btn').addEventListener('click', () => {
-            const email = document.getElementById('email').value;
-            const pass = document.getElementById('password').value;
-            signInWithEmailAndPassword(auth, email, pass).catch(err => alert("Login Failed: " + err.message));
-        });
-
-        // Logout Function
-        document.getElementById('logout-btn').addEventListener('click', () => signOut(auth));
-
-        // Add Product Function
         productForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = productForm.querySelector('button[type="submit"]');
-            submitBtn.innerText = "Uploading...";
-            submitBtn.disabled = true;
+            
+            // 1. Get File
+            const file = document.getElementById('p-image-file').files[0];
+            if (!file) return alert("Please select an image");
 
-            const specsArray = document.getElementById('p-specs').value.split(',').map(s => s.trim());
+            submitBtn.innerText = "Uploading Image...";
+            submitBtn.disabled = true;
+            progressContainer.classList.remove('hidden');
+            progressBar.style.width = '30%';
 
             try {
+                // 2. Upload Image to Firebase Storage
+                const storageRef = ref(storage, 'products/' + Date.now() + '_' + file.name);
+                await uploadBytes(storageRef, file);
+                progressBar.style.width = '70%';
+                
+                // 3. Get Image URL
+                const imageUrl = await getDownloadURL(storageRef);
+                
+                // 4. Save Data to Firestore
+                submitBtn.innerText = "Saving Data...";
+                const specsArray = document.getElementById('p-specs').value.split(',').map(s => s.trim());
+                
                 await addDoc(collection(db, "products"), {
                     name: document.getElementById('p-name').value,
                     price: document.getElementById('p-price').value,
-                    image: document.getElementById('p-image').value,
+                    image: imageUrl, // Saved the uploaded URL
                     description: document.getElementById('p-desc').value,
                     specs: specsArray,
                     createdAt: new Date()
                 });
+
+                progressBar.style.width = '100%';
                 alert("Product Added Successfully!");
                 productForm.reset();
+                progressContainer.classList.add('hidden');
+                progressBar.style.width = '0%';
+
             } catch (error) {
-                console.error("Error adding document: ", error);
-                alert("Error adding product. Check console.");
+                console.error("Error: ", error);
+                alert("Error: " + error.message);
             }
             submitBtn.innerText = "Upload to Store";
             submitBtn.disabled = false;
         });
     </script>
 </body>
-  </html>
+</html>
